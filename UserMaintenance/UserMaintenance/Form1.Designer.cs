@@ -36,6 +36,7 @@ namespace UserMaintenance
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.Delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -58,7 +59,7 @@ namespace UserMaintenance
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(456, 187);
+            this.btnAdd.Location = new System.Drawing.Point(637, 86);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(130, 40);
             this.btnAdd.TabIndex = 2;
@@ -91,7 +92,7 @@ namespace UserMaintenance
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(176, 227);
+            this.button1.Location = new System.Drawing.Point(90, 224);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 67);
             this.button1.TabIndex = 6;
@@ -99,11 +100,22 @@ namespace UserMaintenance
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // Delete
+            // 
+            this.Delete.Location = new System.Drawing.Point(247, 224);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(137, 65);
+            this.Delete.TabIndex = 7;
+            this.Delete.Text = "Delete";
+            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Delete);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtFullName);
@@ -127,6 +139,7 @@ namespace UserMaintenance
         private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Delete;
     }
 }
 

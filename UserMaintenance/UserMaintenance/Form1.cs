@@ -54,5 +54,10 @@ namespace UserMaintenance
                 }
             }
         }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            listUsers.Items.Remove(listUsers.SelectedItem);
+        }
     }
 }
