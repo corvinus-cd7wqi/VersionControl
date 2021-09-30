@@ -33,8 +33,9 @@ namespace UserMaintenance
             this.lblLastName = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblFirstName = new System.Windows.Forms.Label();
-            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtFullName = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -74,12 +75,12 @@ namespace UserMaintenance
             this.lblFirstName.TabIndex = 3;
             this.lblFirstName.Text = "label2";
             // 
-            // txtLastName
+            // txtFullName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(486, 80);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(100, 22);
-            this.txtLastName.TabIndex = 4;
+            this.txtFullName.Location = new System.Drawing.Point(486, 80);
+            this.txtFullName.Name = "txtFullName";
+            this.txtFullName.Size = new System.Drawing.Size(100, 22);
+            this.txtFullName.TabIndex = 4;
             // 
             // txtFirstName
             // 
@@ -88,13 +89,24 @@ namespace UserMaintenance
             this.txtFirstName.Size = new System.Drawing.Size(100, 22);
             this.txtFirstName.TabIndex = 5;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(176, 227);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 67);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtFirstName);
-            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtFullName);
             this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblLastName);
@@ -112,8 +124,9 @@ namespace UserMaintenance
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblFirstName;
-        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.Button button1;
     }
 }
 
