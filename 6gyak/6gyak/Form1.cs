@@ -17,10 +17,13 @@ namespace _6gyak
     public partial class Form1 : Form
     {
         BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> Currencies = new BindingList<string>();
         
-        
+
         public Form1()
         {
+            InitializeComponent();
+            //GetCurrencies();
             RefreshData();
 
         }
@@ -28,7 +31,6 @@ namespace _6gyak
         private void RefreshData()
         {
             Rates.Clear();
-            InitializeComponent();
             GetExchangeRates();
             dataGridView1.DataSource = Rates;
         }
@@ -59,14 +61,20 @@ namespace _6gyak
 
                 // Valuta
                 var childElement = (XmlElement)element.ChildNodes[0];
+                if (childElement == null)
+                    continue;
                 rate.Currency = childElement.GetAttribute("curr");
+                
 
                 // Érték
                 var unit = decimal.Parse(childElement.GetAttribute("unit"));
                 var value = decimal.Parse(childElement.InnerText);
                 if (unit != 0)
                     rate.Value = value / unit;
+                
             }
+            
+
             chartRateData.DataSource = Rates;
             var series = chartRateData.Series[0];
             series.ChartType = SeriesChartType.Line;
@@ -81,8 +89,29 @@ namespace _6gyak
             chartArea.AxisX.MajorGrid.Enabled = false;
             chartArea.AxisY.MajorGrid.Enabled = false;
             chartArea.AxisY.IsStartedFromZero = false;
-        }
 
+
+        }
+       private void GetCurrencies()
+        {
+            MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
+
+            GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
+           
+            var response = mnbService.GetExchangeRates(request);
+            var result = response.GetExchangeRatesResult;
+
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(result);
+            foreach (XmlElement item in xml.DocumentElement.ChildNodes[0])
+            {
+                string newi = item.InnerText;
+                Currencies.Add(newi);
+
+            }
+            comboBox1.DataSource = Currencies;
+
+        }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             RefreshData();
