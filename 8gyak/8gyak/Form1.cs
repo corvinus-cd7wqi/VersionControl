@@ -89,5 +89,15 @@ namespace _8gyak
                 return;
             button.BackColor = colorPicker.Color;
         }
+
+        private void btnSelectPresent_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory()
+            {
+                color1 = button2.BackColor,
+                color2 = button3.BackColor
+
+            };
+        }
     }
 }
