@@ -17,22 +17,30 @@ namespace gyak11
         List<Person> Population = new List<Person>();
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
+        List<int> flelek = new List<int>();
+        List<int> llelek = new List<int>();
         Random rng = new Random(1234);
         public Form1()
         {
             InitializeComponent();
-            Population = GetPopulation(@"C:\Temp\nép.csv");
+            richTextBox1.Clear();
+            flelek.Clear();
+            llelek.Clear();
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+            
+        }
 
+        private void Simulation()
+        {
             // Végigmegyünk a vizsgált éveken
-            for (int year = 2005; year <= 2024; year++)
+            for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
                 // Végigmegyünk az összes személyen
                 for (int i = 0; i < Population.Count; i++)
                 {
                     // Ide jön a szimulációs lépés
-                    SimStep(year,Population[i]);
+                    SimStep(year, Population[i]);
                 }
 
                 int nbrOfMales = (from x in Population
@@ -43,6 +51,8 @@ namespace gyak11
                                     select x).Count();
                 Console.WriteLine(
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+                flelek.Add(nbrOfMales);
+                llelek.Add(nbrOfFemales);
             }
         }
 
@@ -142,5 +152,35 @@ namespace gyak11
             }
         }
 
+        private void btnstart_Click(object sender, EventArgs e)
+        {
+            Simulation();
+            DisplayResults();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnbrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog()==DialogResult.OK)
+            {
+                textBox1.Text = ofd.FileName;
+            }
+            Population = GetPopulation(textBox1.Text);
+
+        }
+        private void DisplayResults()
+        {
+            for (int i = 2005; i <=numericUpDown1.Value ; i++)
+            {
+                int x = 0;
+                richTextBox1.Text += "Szimulációs év: " + i + "\n\t Fiúk:" + flelek[x] +"\n\t Lányok:" + llelek[x] +"\n\n";
+                x++;
+            }
+        }
     }
 }
